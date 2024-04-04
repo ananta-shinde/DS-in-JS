@@ -74,16 +74,12 @@ class SignlyLinkedList
 
 
 var slist = new SignlyLinkedList();
-
 slist.push(20);
-
 slist.push(40);
 slist.push(50);
 slist.push(60);
-
 slist.push(50);
 slist.push(80);
-
 slist.printList();
 console.log(slist.findByValue(160));
 slist.deleteByValue(50);
