@@ -15,12 +15,15 @@ class SignlyLinkedList
             this.head = newnode;
           }else{
             var temp = this.head;
+            
              while(temp.next != null)
              {
                 temp = temp.next;
              }
              temp.next = newnode
+             
           }
+          console.log(temp)
           
     }
 

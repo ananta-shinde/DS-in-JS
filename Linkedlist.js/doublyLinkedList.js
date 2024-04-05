@@ -56,9 +56,7 @@ deleteByValue = (value)=>{
 
     temp.next = temp.next.next;
     temp.next.prev = temp;
-}
-
-
+  }
 }
 
 
