@@ -1,42 +1,93 @@
 
 class Node{
     data;
-    next = null;
-    prev = null;
+    next;
 }
 
 class CircularLinkedList{
-     head =-1
-     tail =-1
-    data = new Array(5);
+    head = null;
+    count = 0;
 
-     push=(number)=>{
-        
-        if(this.head == -1){
-            this.head++;
-            this.tail++;
-            this.data[this.head] = number;
+    push = (number)=>{
+        var newnode = new Node();
+        newnode.data = number;
+        newnode.next = null;
+        this.count++;
+        if(this.head == null)
+        {
+            this.head = newnode;
+            newnode.next = this.head;
         }
         else{
-            if(this.head != this.tail)
+            var temp = this.head;
+            while(temp.next != this.head)
             {
-                this.tail++;
-                if(this.tail>=5)
-                {
-                    tail = 0;
-                }
-                this.data[this.tail] = number;  
-            }else{
-                console.log("list is full")        
+                temp = temp.next;
             }
-           
+            temp.next = newnode;
+            newnode.next = this.head;
         }
-        console.log("list :"+this.data+" head:"+this.head+" tail:"+this.tail)
-        
-     }
+    }
+
+    size = ()=>{
+         return this.count;
+    }
+
+    printList = ()=>{
+        if(this.head != null)
+        {
+            var temp = this.head;
+            if(this.count == 1){
+                console.log(temp.data)
+            }
+            else{
+                do{
+                    console.log(temp.data);
+                    temp =  temp.next;
+                }while(temp != this.head)
+            }
+            
+        }
+    }
+
+    deleteByValue = (value)=>{
+          if(this.head != null)
+          {
+              
+              if(this.head.data == value)
+              {
+                  var temp = this.head;
+                  while(temp.next != this.head)
+                  {
+                     temp = temp.next;
+                  }
+                  this.head = this.head.next;
+                  temp.next = this.head;
+
+              }
+              else{
+                while(temp.next.data != value)
+                {
+                    temp = temp.next;
+                }
+                if(temp.next == this.head)
+                {
+                    temp.next = this.head;
+                }else{
+                    temp.next = temp.next.next
+                }  
+              }
+              this.count--; 
+          }
+    }
 }
 
-var clist = new CircularLinkedList();
+var list = new CircularLinkedList()
 
-clist.push(20)
-clist.push(30)
+list.push(20);
+list.push(30);
+list.push(40);
+list.deleteByValue(40);
+
+
+list.printList();
